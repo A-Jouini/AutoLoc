@@ -68,8 +68,45 @@ AutoLoc a pour but de centraliser et d'automatiser la gestion de la location de 
 
 - [x] JDK 17 installé et vérifié (`java -version`)
 - [x] IntelliJ IDEA Ultimate installé, licence étudiante activée
-- [ ] MySQL installé, service démarré, base `autoloc_db` créée
+- [x] MySQL installé, service démarré, base `autoloc_db` créée
 - [x] Postman installé
 - [x] Dépôt Git « AutoLoc » initialisé
 - [x] README v0 rédigé
 - [ ] Capture d'écran de l'environnement (`docs/environnement.png`)
+
+## Structure du dépôt
+
+```
+AutoLoc/
+├── README.md
+└── autoloc-api/          # API Spring Boot (Atelier 1+)
+    └── src/main/java/tn/esprit/autoloc
+        ├── domain         # entités JPA, énumérations
+        ├── repository     # interfaces Spring Data JPA
+        ├── service        # couche métier (Atelier 4)
+        ├── web/controller # contrôleurs REST (Atelier 5)
+        ├── web/dto        # DTO (Atelier 6)
+        └── config         # CommandLineRunner de démo (profil dev)
+```
+
+## Lancer le projet
+
+```bash
+cd autoloc-api
+# le mot de passe MySQL est lu depuis une variable d'environnement
+export DB_PASSWORD=<mot_de_passe_root>              # PowerShell : $env:DB_PASSWORD="..."
+mvn clean install -DskipTests
+mvn spring-boot:run                                 # profil par défaut (base autoloc_db)
+mvn spring-boot:run -Dspring-boot.run.profiles=dev  # profil dev + véhicules de démo
+```
+
+La base `autoloc_db` est créée automatiquement (`createDatabaseIfNotExist=true`) et les tables
+sont générées par Hibernate (`ddl-auto=update`).
+
+## Avancement
+
+- [x] Atelier 0 — environnement + README v0
+- [x] Atelier 1 — projet Spring Boot + entité `Vehicule`
+- [x] Prépa Atelier 2 — 8 entités restantes sans associations (`Agence`, `Client`, `Employe`,
+      `Equipement`, `Reservation`, `Contrat`, `Paiement`, `Maintenance`)
+- [x] Activité Maven — cycle de vie `clean`, `compile`, `package`, `install`

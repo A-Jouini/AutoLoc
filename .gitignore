@@ -25,3 +25,8 @@ out/
 # OS
 .DS_Store
 Thumbs.db
+.vscode/
+desktop.ini
+
+# Secrets
+.env
