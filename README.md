@@ -83,10 +83,11 @@ AutoLoc/
     └── src/main/java/tn/esprit/autoloc
         ├── domain         # entités JPA, énumérations
         ├── repository     # interfaces Spring Data JPA
-        ├── service        # couche métier (Atelier 4)
-        ├── web/controller # contrôleurs REST (Atelier 5)
-        ├── web/dto        # DTO (Atelier 6)
-        └── config         # CommandLineRunner de démo (profil dev)
+        ├── service        # couche métier
+        ├── web/controller # contrôleurs REST
+        ├── web/dto        # DTO
+        ├── exception      # exceptions et gestion centralisée des erreurs
+        └── config         # configuration OpenAPI, CommandLineRunner de démo (profil dev)
 ```
 
 ## Lancer le projet
@@ -110,3 +111,8 @@ sont générées par Hibernate (`ddl-auto=update`).
 - [x] Prépa Atelier 2 — 8 entités restantes sans associations (`Agence`, `Client`, `Employe`,
       `Equipement`, `Reservation`, `Contrat`, `Paiement`, `Maintenance`)
 - [x] Activité Maven — cycle de vie `clean`, `compile`, `package`, `install`
+- [x] Atelier 2 — associations JPA entre les entités (cascade et fetch selon l'étude de cas)
+- [x] Repositories — un par entité
+- [x] Services — interface et implémentation pour chaque entité, avec les règles métier
+- [x] Contrôleurs REST, DTO et gestion centralisée des erreurs
+- [x] Documentation de l'API avec SpringDoc (Swagger UI : `http://localhost:8080/swagger-ui.html`)
