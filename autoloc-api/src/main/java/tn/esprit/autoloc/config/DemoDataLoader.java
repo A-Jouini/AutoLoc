@@ -27,11 +27,11 @@ public class DemoDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
         List<Vehicule> demo = List.of(
-                new Vehicule(null, "123 TU 4567", "Renault", "Clio", CategorieVehicule.CITADINE,
+                creer("123 TU 4567", "Renault", "Clio", CategorieVehicule.CITADINE,
                         new BigDecimal("80.00"), StatutVehicule.DISPONIBLE),
-                new Vehicule(null, "234 TU 5678", "Peugeot", "508", CategorieVehicule.BERLINE,
+                creer("234 TU 5678", "Peugeot", "508", CategorieVehicule.BERLINE,
                         new BigDecimal("150.00"), StatutVehicule.DISPONIBLE),
-                new Vehicule(null, "345 TU 6789", "Kia", "Sportage", CategorieVehicule.SUV,
+                creer("345 TU 6789", "Kia", "Sportage", CategorieVehicule.SUV,
                         new BigDecimal("180.00"), StatutVehicule.MAINTENANCE));
 
         List<Vehicule> nouveaux = demo.stream()
@@ -39,5 +39,17 @@ public class DemoDataLoader implements CommandLineRunner {
                 .toList();
         vehiculeRepository.saveAll(nouveaux);
         log.info("{} véhicule(s) de démonstration inséré(s)", nouveaux.size());
+    }
+
+    private Vehicule creer(String immatriculation, String marque, String modele, CategorieVehicule categorie,
+                           BigDecimal tarifJournalier, StatutVehicule statut) {
+        Vehicule v = new Vehicule();
+        v.setImmatriculation(immatriculation);
+        v.setMarque(marque);
+        v.setModele(modele);
+        v.setCategorie(categorie);
+        v.setTarifJournalier(tarifJournalier);
+        v.setStatut(statut);
+        return v;
     }
 }
